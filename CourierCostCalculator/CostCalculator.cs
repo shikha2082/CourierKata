@@ -12,7 +12,7 @@ namespace CourierCostCalculator
             _parcels = parcels;
         }
 
-        public ParcelCostDetails CalculateCost()
+        public ParcelCostDetails CalculateCost(bool isSpeedyShipping = false)
         {
             ParcelCostDetails parcelCostDetails = new ParcelCostDetails();
             
@@ -23,8 +23,11 @@ namespace CourierCostCalculator
             }
 
             parcelCostDetails.Parcels = _parcels;
-            parcelCostDetails.TotalCost = _parcels.Sum(p => p.ItemCost);
 
+            double totalCost = _parcels.Sum(p => p.ItemCost);
+
+            parcelCostDetails.TotalCost = isSpeedyShipping ? totalCost * 2 : totalCost;
+            parcelCostDetails.IsSpeedyShipping = isSpeedyShipping;
             return parcelCostDetails;
         }
 

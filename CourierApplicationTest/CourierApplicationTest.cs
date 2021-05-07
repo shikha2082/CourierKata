@@ -10,16 +10,18 @@ namespace CourierApplicationTest
         public void Setup()
         {
         }
-        
+
         [Test]
-        public void CanCalculateCost()
+        [TestCase(false)]
+        [TestCase(true)]
+        public void CanCalculateCost(bool isSpeedyShipping)
         {
             //Arrange
             List<Parcel> parcels = GetParcelData();
             CostCalculator costCalculator = new CostCalculator(parcels);
 
             //Act
-            ParcelCostDetails parcelCostDetails = costCalculator.CalculateCost();
+            ParcelCostDetails parcelCostDetails = costCalculator.CalculateCost(isSpeedyShipping);
 
             //Assert
             Assert.IsNotNull(parcelCostDetails, "Invalid Result");
@@ -36,6 +38,18 @@ namespace CourierApplicationTest
 
             Assert.AreEqual(25, parcelCostDetails.Parcels[3].ItemCost, "Invalid Result");
             Assert.AreEqual(ParcelType.ExtraLargeParcel, parcelCostDetails.Parcels[3].ParcelType, "Invalid Result");
+
+            if (isSpeedyShipping)
+            {
+                Assert.IsTrue(parcelCostDetails.IsSpeedyShipping, "Invalid Result");
+                Assert.AreEqual(102, parcelCostDetails.TotalCost, "Invalid Result");
+            }
+            else
+            {
+                Assert.IsFalse(parcelCostDetails.IsSpeedyShipping, "Invalid Result");
+                Assert.AreEqual(51, parcelCostDetails.TotalCost, "Invalid Result");
+            }
+            
         }
 
         public static List<Parcel> GetParcelData()

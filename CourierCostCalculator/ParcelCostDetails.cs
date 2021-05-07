@@ -9,5 +9,7 @@ namespace CourierCostCalculator
         public List<Parcel> Parcels { get; set; }
 
         public double TotalCost { get; set; }
+        
+        public bool IsSpeedyShipping { get; set; }
     }
 }
