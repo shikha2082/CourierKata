@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourierApplication", "Couri
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CourierCostCalculator", "CourierCostCalculator\CourierCostCalculator.csproj", "{3F5ACDFC-DB6D-4678-8F4A-D4FCC20076B2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourierApplicationTest", "CourierApplicationTest\CourierApplicationTest.csproj", "{3AC3A7F5-25B1-4AB7-8522-EE6365C41952}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{3F5ACDFC-DB6D-4678-8F4A-D4FCC20076B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F5ACDFC-DB6D-4678-8F4A-D4FCC20076B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F5ACDFC-DB6D-4678-8F4A-D4FCC20076B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AC3A7F5-25B1-4AB7-8522-EE6365C41952}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AC3A7F5-25B1-4AB7-8522-EE6365C41952}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AC3A7F5-25B1-4AB7-8522-EE6365C41952}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AC3A7F5-25B1-4AB7-8522-EE6365C41952}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
