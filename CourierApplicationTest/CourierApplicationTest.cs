@@ -25,7 +25,7 @@ namespace CourierApplicationTest
 
             //Assert
             Assert.IsNotNull(parcelCostDetails, "Invalid Result");
-            Assert.AreEqual(4, parcelCostDetails.Parcels.Count, "Invalid Result");
+            Assert.AreEqual(5, parcelCostDetails.Parcels.Count, "Invalid Result");
 
             Assert.AreEqual(3, parcelCostDetails.Parcels[0].ItemCost, "Invalid Result");
             Assert.AreEqual(ParcelType.SmallParcel, parcelCostDetails.Parcels[0].ParcelType, "Invalid Result");
@@ -39,15 +39,18 @@ namespace CourierApplicationTest
             Assert.AreEqual(31, parcelCostDetails.Parcels[3].ItemCost, "Invalid Result");
             Assert.AreEqual(ParcelType.ExtraLargeParcel, parcelCostDetails.Parcels[3].ParcelType, "Invalid Result");
 
+            Assert.AreEqual(55, parcelCostDetails.Parcels[4].ItemCost, "Invalid Result");
+            Assert.AreEqual(ParcelType.HeavyParcel, parcelCostDetails.Parcels[4].ParcelType, "Invalid Result");
+
             if (isSpeedyShipping)
             {
                 Assert.IsTrue(parcelCostDetails.IsSpeedyShipping, "Invalid Result");
-                Assert.AreEqual(130, parcelCostDetails.TotalCost, "Invalid Result");
+                Assert.AreEqual(240, parcelCostDetails.TotalCost, "Invalid Result");
             }
             else
             {
                 Assert.IsFalse(parcelCostDetails.IsSpeedyShipping, "Invalid Result");
-                Assert.AreEqual(65, parcelCostDetails.TotalCost, "Invalid Result");
+                Assert.AreEqual(120, parcelCostDetails.TotalCost, "Invalid Result");
             }
             
         }
@@ -92,6 +95,15 @@ namespace CourierApplicationTest
                 Weight = 13
             };
             parcels.Add(parcel4);
+            Parcel parcel5 = new Parcel()
+            {
+                ItemName = "Item4",
+                Length = 160,
+                Height = 50,
+                Width = 8,
+                Weight = 55
+            };
+            parcels.Add(parcel5);
             return parcels;
         }
     }

@@ -43,6 +43,8 @@ namespace CourierCostCalculator
                     return parcel.Weight > 6 ? 15 + (parcel.Weight - 6) * 2 : 15; 
                 case ParcelType.ExtraLargeParcel:
                     return parcel.Weight > 10 ? 25 + (parcel.Weight - 10) * 2 : 25;
+                case ParcelType.HeavyParcel:
+                    return parcel.Weight > 50 ? 50 + (parcel.Weight - 50) : 50;
                 default:
                     return 0;
             }
@@ -50,8 +52,12 @@ namespace CourierCostCalculator
         }
 
         internal ParcelType GetParcelType(Parcel parcel)
-        {            
-            if(parcel.Height < 10 && parcel.Length < 10 && parcel.Width < 10)
+        {
+            if(parcel.Weight >= 50)
+            {
+                return ParcelType.HeavyParcel;
+            }
+            else if(parcel.Height < 10 && parcel.Length < 10 && parcel.Width < 10)
             {
                 return ParcelType.SmallParcel;
             }
