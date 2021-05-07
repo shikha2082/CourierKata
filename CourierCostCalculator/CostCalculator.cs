@@ -19,7 +19,7 @@ namespace CourierCostCalculator
             foreach(Parcel parcel in _parcels)
             {
                 parcel.ParcelType = GetParcelType(parcel);
-                parcel.ItemCost = GetParcelCost(parcel.ParcelType.Value);
+                parcel.ItemCost = GetParcelCost(parcel);
             }
 
             parcelCostDetails.Parcels = _parcels;
@@ -31,18 +31,18 @@ namespace CourierCostCalculator
             return parcelCostDetails;
         }
 
-        internal double GetParcelCost(ParcelType parcelType)
+        internal double GetParcelCost(Parcel parcel)
         {
-            switch (parcelType)
+            switch (parcel.ParcelType)
             {
                 case ParcelType.SmallParcel:
-                    return 3;
+                    return parcel.Weight > 1 ? 3 + (parcel.Weight - 1) * 2 : 3;
                 case ParcelType.MediumParcel:
-                    return 8;
+                    return parcel.Weight > 3 ? 8 + (parcel.Weight - 3) * 2 : 8;
                 case ParcelType.LargeParcel:
-                    return 15;
+                    return parcel.Weight > 6 ? 15 + (parcel.Weight - 6) * 2 : 15; 
                 case ParcelType.ExtraLargeParcel:
-                    return 25;
+                    return parcel.Weight > 10 ? 25 + (parcel.Weight - 10) * 2 : 25;
                 default:
                     return 0;
             }

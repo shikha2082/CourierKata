@@ -30,24 +30,24 @@ namespace CourierApplicationTest
             Assert.AreEqual(3, parcelCostDetails.Parcels[0].ItemCost, "Invalid Result");
             Assert.AreEqual(ParcelType.SmallParcel, parcelCostDetails.Parcels[0].ParcelType, "Invalid Result");
 
-            Assert.AreEqual(15, parcelCostDetails.Parcels[1].ItemCost, "Invalid Result");
+            Assert.AreEqual(19, parcelCostDetails.Parcels[1].ItemCost, "Invalid Result");
             Assert.AreEqual(ParcelType.LargeParcel, parcelCostDetails.Parcels[1].ParcelType, "Invalid Result");
 
-            Assert.AreEqual(8, parcelCostDetails.Parcels[2].ItemCost, "Invalid Result");
+            Assert.AreEqual(12, parcelCostDetails.Parcels[2].ItemCost, "Invalid Result");
             Assert.AreEqual(ParcelType.MediumParcel, parcelCostDetails.Parcels[2].ParcelType, "Invalid Result");
 
-            Assert.AreEqual(25, parcelCostDetails.Parcels[3].ItemCost, "Invalid Result");
+            Assert.AreEqual(31, parcelCostDetails.Parcels[3].ItemCost, "Invalid Result");
             Assert.AreEqual(ParcelType.ExtraLargeParcel, parcelCostDetails.Parcels[3].ParcelType, "Invalid Result");
 
             if (isSpeedyShipping)
             {
                 Assert.IsTrue(parcelCostDetails.IsSpeedyShipping, "Invalid Result");
-                Assert.AreEqual(102, parcelCostDetails.TotalCost, "Invalid Result");
+                Assert.AreEqual(130, parcelCostDetails.TotalCost, "Invalid Result");
             }
             else
             {
                 Assert.IsFalse(parcelCostDetails.IsSpeedyShipping, "Invalid Result");
-                Assert.AreEqual(51, parcelCostDetails.TotalCost, "Invalid Result");
+                Assert.AreEqual(65, parcelCostDetails.TotalCost, "Invalid Result");
             }
             
         }
@@ -61,7 +61,8 @@ namespace CourierApplicationTest
                 ItemName = "Item1",
                 Length = 6,
                 Height = 5,
-                Width = 8
+                Width = 8,
+                Weight = 1
             };
             parcels.Add(parcel1);
             Parcel parcel2 = new Parcel()
@@ -69,7 +70,8 @@ namespace CourierApplicationTest
                 ItemName = "Item2",
                 Length = 60,
                 Height = 56,
-                Width = 89
+                Width = 89,
+                Weight = 8
             };
             parcels.Add(parcel2);
             Parcel parcel3 = new Parcel()
@@ -77,7 +79,8 @@ namespace CourierApplicationTest
                 ItemName = "Item3",
                 Length = 16,
                 Height = 5,
-                Width = 8
+                Width = 8,
+                Weight = 5
             };
             parcels.Add(parcel3);
             Parcel parcel4 = new Parcel()
@@ -85,7 +88,8 @@ namespace CourierApplicationTest
                 ItemName = "Item4",
                 Length = 160,
                 Height = 50,
-                Width = 8
+                Width = 8,
+                Weight = 13
             };
             parcels.Add(parcel4);
             return parcels;

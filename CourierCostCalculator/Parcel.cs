@@ -11,6 +11,8 @@ namespace CourierCostCalculator
         public int Height { get; set; }
         public int Width { get; set; }
 
+        public double Weight { get; set; }
+
         public ParcelType? ParcelType { get; set; }
 
         public double ItemCost { get; set; }
