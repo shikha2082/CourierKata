@@ -11,5 +11,7 @@ namespace CourierCostCalculator
         public double TotalCost { get; set; }
         
         public bool IsSpeedyShipping { get; set; }
+
+        public double Discount { get; set; }
     }
 }

@@ -24,11 +24,60 @@ namespace CourierCostCalculator
 
             parcelCostDetails.Parcels = _parcels;
 
-            double totalCost = _parcels.Sum(p => p.ItemCost);
+            double discount = ApplyDiscount();
+            double totalCost = _parcels.Sum(p => p.ItemCost) - discount;
 
+            parcelCostDetails.Discount = discount;
             parcelCostDetails.TotalCost = isSpeedyShipping ? totalCost * 2 : totalCost;
             parcelCostDetails.IsSpeedyShipping = isSpeedyShipping;
+
             return parcelCostDetails;
+        }
+
+        private double ApplyDiscount()
+        {
+            double smallParcelManiaDiscount = 0;
+            double mediumParcelManiaDiscount = 0;
+            double mixedParcelManiaDiscount = 0;
+
+            List<Parcel> smallParcels = _parcels.Where(p => p.ParcelType == ParcelType.SmallParcel).ToList();
+            List<Parcel> mediumParcels = _parcels.Where(p => p.ParcelType == ParcelType.MediumParcel).ToList();
+
+            if (smallParcels.Count > 3)
+            {
+                //Apply small Parcel Mania
+                smallParcelManiaDiscount = 3*(smallParcels.Count % 3);
+            }
+            if(mediumParcels.Count > 2)
+            {
+                //Apply medium Parcel Mania
+                mediumParcelManiaDiscount = 8*(mediumParcels.Count % 2);                
+            }
+            if(_parcels.Count > 4)
+            {
+                //Apply mixed Parcel Mania
+                int discountedParcelCount = _parcels.Count % 4;
+
+                List<Parcel> parcels = _parcels.OrderBy(p => p.ItemCost).ToList();
+
+                double costToDeduct = 0;
+
+                for(int i = 0; i < discountedParcelCount; i++)
+                {
+                    costToDeduct += parcels[i].ItemCost;
+                }
+
+                mixedParcelManiaDiscount = costToDeduct;
+            }
+
+            if(smallParcelManiaDiscount > 0 || mediumParcelManiaDiscount > 0 || mixedParcelManiaDiscount > 0)
+            {
+                double[] discounts = new double[] { smallParcelManiaDiscount, mediumParcelManiaDiscount, mixedParcelManiaDiscount };
+
+                return discounts.Max();
+            }
+
+            return 0;
         }
 
         internal double GetParcelCost(Parcel parcel)

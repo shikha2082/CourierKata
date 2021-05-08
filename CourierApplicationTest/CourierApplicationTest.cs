@@ -50,7 +50,7 @@ namespace CourierApplicationTest
             else
             {
                 Assert.IsFalse(parcelCostDetails.IsSpeedyShipping, "Invalid Result");
-                Assert.AreEqual(120, parcelCostDetails.TotalCost, "Invalid Result");
+                Assert.AreEqual(117, parcelCostDetails.TotalCost, "Invalid Result");
             }
             
         }
